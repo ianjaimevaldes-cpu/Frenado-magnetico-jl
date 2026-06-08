@@ -1,0 +1,5 @@
+include("Parametros.jl")
+include("modelofisico.jl")
+include("RK4.jl")
+include("simulacion.jl")
+include("graficas.jl")
