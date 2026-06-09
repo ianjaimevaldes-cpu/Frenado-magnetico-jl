@@ -16,4 +16,4 @@ c = configuracion()
 res_conductor = simular(p_conductor, c)
 res_sin_conductor = simular(p_sin_conductor, c)
 
-graficar(res_conductor, res_sin_conductor)
+graficar(res_conductor, res_sin_conductor, p_conductor)

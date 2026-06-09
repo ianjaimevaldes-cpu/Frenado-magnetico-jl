@@ -95,10 +95,10 @@ function graficar_FEM(res_conductor::resultados)
     return plt
 end
 
-function animar_dipolo(res_conductor::resultados, ruta_gif::String)
+function animar_dipolo(res_conductor::resultados, ruta_gif::String, p::parametros)
 
    
-
+    
     z = res_conductor.z
     
     z_min = minimum(z)
@@ -118,10 +118,15 @@ function animar_dipolo(res_conductor::resultados, ruta_gif::String)
 
         scatter!([0], [z[i]], markershape = :square, markersize = 18, color = :red)
 
-        plot!([-0.025,-0.025], [z_min, z_max], linewidth = 2, color = :blue, label = false)
-        plot!([0.025,0.025], [z_min, z_max], linewidth = 2, color = :blue, label = false)
-        plot!([-0.03,-0.03], [z_min, z_max], linewidth = 2, color= :blue, label = false)
-        plot!([0.03,0.03], [z_min, z_max], linewidth = 2, color = :blue, label = false)
+        plot!([-0.025,-0.025], [p.tubo_up, p.tubo_down], linewidth = 2, color = :blue, label = false)
+        plot!([0.025,0.025], [p.tubo_up, p.tubo_down], linewidth = 2, color = :blue, label = false)
+        plot!([-0.03,-0.03], [p.tubo_up, p.tubo_down], linewidth = 2, color= :blue, label = false)
+        plot!([0.03,0.03], [p.tubo_up, p.tubo_down], linewidth = 2, color = :blue, label = false)
+
+        plot!([-0.03,-0.025],[p.tubo_up, p.tubo_up], linewidth = 2, color = :blue, label = false)
+        plot!([-0.03,-0.025],[p.tubo_down, p.tubo_down], linewidth = 2, color = :blue, label = false)
+        plot!([0.03,0.025],[p.tubo_up, p.tubo_up], linewidth = 2, color = :blue, label = false)
+        plot!([0.03,0.025],[p.tubo_down, p.tubo_down], linewidth = 2, color = :blue, label = false)
 
 
         
@@ -138,7 +143,7 @@ function animar_dipolo(res_conductor::resultados, ruta_gif::String)
 end
 
 
-function graficar(res_conductor::resultados, res_sin_conductor::resultados)
+function graficar(res_conductor::resultados, res_sin_conductor::resultados,  p::parametros)
 
     carpeta_data = joinpath(@__DIR__, "..", "data")
     mkpath(carpeta_data)
@@ -156,13 +161,13 @@ function graficar(res_conductor::resultados, res_sin_conductor::resultados)
     savefig(p5, joinpath(carpeta_data, "FEM.png"))
 
     ruta_animacion = joinpath(carpeta_data, "animacion.gif")
-    p6 = animar_dipolo(res_conductor, ruta_animacion)
+    p6 = animar_dipolo(res_conductor, ruta_animacion,p)
 
     display(p1)
     display(p2)
     display(p3)
     display(p4)
     display(p5)
-    display(p6)
+    display("image/gif", read(ruta_animacion))
     
 end
