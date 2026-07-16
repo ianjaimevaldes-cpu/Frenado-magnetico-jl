@@ -126,13 +126,7 @@ function animar_dipolo(res_conductor::resultados, ruta_gif::String, p::parametro
         plot!([-0.03,-0.025],[p.tubo_up, p.tubo_up], linewidth = 2, color = :blue, label = false)
         plot!([-0.03,-0.025],[p.tubo_down, p.tubo_down], linewidth = 2, color = :blue, label = false)
         plot!([0.03,0.025],[p.tubo_up, p.tubo_up], linewidth = 2, color = :blue, label = false)
-        plot!([0.03,0.025],[p.tubo_down, p.tubo_down], linewidth = 2, color = :blue, label = false)
-
-
-        
-
-        
-        
+        plot!([0.03,0.025],[p.tubo_down, p.tubo_down], linewidth = 2, color = :blue, label = false) 
 
     end
 
